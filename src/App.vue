@@ -1,12 +1,17 @@
 <script setup lang="ts">
+import AppHeader from "@/components/AppHeader.vue";
+import AppFooter from "@/components/AppFooter.vue";
+import ProductList from "@/components/ProductList.vue";
 </script>
 
 <template>
-  <div class="container py-4 px-3 mx-auto">
-    <h1>Hello, Bootstrap and Vite!</h1>
-    <button class="btn btn-primary">Primary button</button>
-  </div>
-</template>
 
-<style scoped>
-</style>
+  <AppHeader/>
+
+  <main>
+    <ProductList/>
+  </main>
+
+  <AppFooter/>
+
+</template>
