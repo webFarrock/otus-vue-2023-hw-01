@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import {computed} from "vue";
-import useBasket from "@/composables/use-basket";
+import { computed } from 'vue'
+import useBasket from '@/composables/use-basket'
+import { routeBasket } from '@/constants'
 
 const basket = useBasket()
 const show = computed(() => basket.inBasketCount.value > 0)
@@ -8,19 +9,17 @@ const show = computed(() => basket.inBasketCount.value > 0)
 
 <template>
   <div v-if="show" class="header-basket">
-    <span class="p-3">items in basket: {{ basket.inBasketCount }}</span>
-    <button class="checkout-bth  btn btn-outline-primary bg-white" type="button">Checkout</button>
+    <router-link :to="routeBasket" class="p-2 header-basket__link">items in basket:</router-link>
+    {{ basket.inBasketCount }}
   </div>
 </template>
 
 <style lang="scss" scoped>
 .header-basket {
-  color: white
-}
+  color: white;
 
-.checkout-bth {
-  &:hover {
-    color: black;
+  &__link {
+    color: inherit;
   }
 }
 </style>
