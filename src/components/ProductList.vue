@@ -1,14 +1,33 @@
 <script lang="ts" setup>
-import {computed} from "vue";
+import {ref, computed} from "vue";
+import type {ISearchData} from "@/types";
+import {searchHighlight, queryFound} from "@/helpers";
 import ProductCard from "@/components/ProductCard.vue";
 import useProducts from "@/composables/use-products";
 import AppLoader from "@/components/AppLoader.vue";
+import ProductsSearch from "@/components/ProductsSearch.vue";
 
 const {products, loading} = useProducts()
-const displayProducts = computed(() => products.value.values())
+const filters = ref<ISearchData>({} as ISearchData)
+
+const displayProducts = computed(() => {
+  const {name, priceFrom, priceTo} = filters.value
+  if (!name && !priceFrom && !priceTo) return [...products.value.values()]
+  return [...products.value.values()]
+      .filter(item => (name ? queryFound(item.title, name) : true))
+      .filter(item => (priceFrom ? item.price >= priceFrom : true))
+      .filter(item => priceTo ? item.price <= priceTo : true)
+      .map(item => ({
+        ...item,
+        title: name ? searchHighlight(item.title, name) : item.title
+      }))
+})
+
+const handleSearch = (data: ISearchData) => filters.value = data
 </script>
 <template>
-  <div class="album py-5 bg-body-tertiary">
+  <ProductsSearch @search="handleSearch"/>
+  <div class="album my-5 bg-body-tertiary">
     <div class="container">
       <AppLoader v-if="loading"/>
       <div v-else class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

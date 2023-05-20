@@ -1,8 +1,8 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import RatingStars from "@/components/RatingStars.vue";
 import type {IProduct} from "@/types";
 
-interface IProps{
+interface IProps {
   product: IProduct
 }
 
@@ -14,42 +14,45 @@ defineProps<IProps>()
   <div class="col">
     <div class="card shadow-sm">
       <div class="card__image">
-      <img  class="card-img-top"
-            :src="product.image"
-            :alt="product.title"
-            :title="product.title"
-      />
+        <img :alt="product.title"
+             :src="product.image"
+             :title="product.title"
+             class="card-img-top"
+        />
       </div>
       <div class="card__body">
         <div class="card__text">
-          <div class="card-text__title">{{product.title}}</div>
-          <div class="card-text__category">{{product.category}}</div>
+          <div class="card-text__title" v-html="product.title"/>
+          <div class="card-text__category">{{ product.category }}</div>
         </div>
         <RatingStars :rating="product.rating.rate"></RatingStars>
         <div class="card__price">
-          {{product.price}} $
+          {{ product.price }} $
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-.card{
+<style lang="scss" scoped>
+.card {
   height: 100%;
-  &__body{
+
+  &__body {
     flex: 1 1 auto;
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     color: var(--bs-card-color);
   }
-  &__text{
+
+  &__text {
     margin-bottom: 10px;
-    &__title{
+
+    &__title {
       font-weight: bold;
     }
   }
 
-  &__image{
+  &__image {
     width: 300px;
     height: 300px;
     display: flex;
@@ -57,14 +60,14 @@ defineProps<IProps>()
     justify-content: center;
     align-items: center;
 
-    img{
+    img {
       width: auto;
       max-width: 90%;
       max-height: 90%;
     }
   }
 
-  &__price{
+  &__price {
     font-size: 24px;
   }
 }

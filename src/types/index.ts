@@ -2,6 +2,7 @@ export interface IProductRating {
     rate: number
     count: number
 }
+
 export interface IProduct {
     id: number
     title: string
@@ -10,4 +11,10 @@ export interface IProduct {
     category: string
     image: string
     rating: IProductRating
+}
+
+export interface ISearchData {
+    name: string
+    priceFrom: number | null
+    priceTo: number | null
 }
