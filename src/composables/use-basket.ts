@@ -1,15 +1,16 @@
-import {computed} from "vue";
-import {useState} from "vue3-usestate";
-import type {IBasketProduct, IProduct} from "@/types";
+import { computed } from 'vue'
+import { useState } from 'vue3-usestate'
+import type { IBasketProduct, IProduct } from '@/types'
 
 export default () => {
   const basket = useState<Map<number, IBasketProduct>>('basket', new Map())
   const addToBasket = (item: IProduct) => {
     const product = basket.value.get(item.id)
-    if (product) basket.value.set(item.id, {...item, quantity: product.quantity += 1})
-    else basket.value.set(item.id, {...item, quantity: 1})
+    if (product) basket.value.set(item.id, { ...item, quantity: (product.quantity += 1) })
+    else basket.value.set(item.id, { ...item, quantity: 1 })
   }
   const inBasketCount = computed(() => basket.value.size)
+  const isEmpty = computed(() => !inBasketCount.value)
 
   const removeFromBasket = (item: IProduct, fullQuantity = false) => {
     // можно кинуть ошибку если продукта нет - но имхо лишнее
@@ -18,7 +19,7 @@ export default () => {
       const product = basket.value.get(item.id)
       if (!product) return
       if (product.quantity <= 1) removeFromBasket(item, true)
-      else basket.value.set(item.id, {...item, quantity: product.quantity -= 1})
+      else basket.value.set(item.id, { ...item, quantity: (product.quantity -= 1) })
     }
   }
 
@@ -27,10 +28,10 @@ export default () => {
     return product?.quantity || 0
   }
 
-
   return {
     basket,
     inBasketCount,
+    isEmpty,
     addToBasket,
     removeFromBasket,
     getBasketQuantity,

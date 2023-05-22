@@ -1,6 +1,11 @@
 <script lang="ts" setup>
-import HeaderBasket from '@/components/HeaderBasket.vue'
+import { computed } from 'vue'
 import { routeHome } from '@/constants'
+import useBasket from '@/composables/use-basket'
+import BasketHeader from '@/components/BasketHeader.vue'
+
+const { isEmpty } = useBasket()
+const showBasket = computed(() => !isEmpty.value)
 </script>
 <template>
   <header data-bs-theme="dark">
@@ -12,7 +17,7 @@ import { routeHome } from '@/constants'
               <strong>Products</strong>
             </router-link>
           </div>
-          <HeaderBasket />
+          <BasketHeader v-if="showBasket" />
         </div>
       </div>
     </div>

@@ -1,3 +1,0 @@
-<template>
-  basket component
-</template>
