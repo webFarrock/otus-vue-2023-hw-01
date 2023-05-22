@@ -19,7 +19,7 @@ const displayProducts = computed(() => {
     .filter((item) => (priceTo ? item.price <= priceTo : true))
     .map((item) => ({
       ...item,
-      title: name ? searchHighlight(item.title, name) : item.title
+      title: name ? searchHighlight(item.title, name) : item.title,
     }))
 })
 

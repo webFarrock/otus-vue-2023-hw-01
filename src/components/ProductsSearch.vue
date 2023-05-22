@@ -16,9 +16,9 @@ watchDebounced(
     emit('search', {
       name: name.value,
       priceFrom: priceFrom.value,
-      priceTo: priceTo.value
+      priceTo: priceTo.value,
     }),
-  { debounce: 500, maxWait: 1000 }
+  { debounce: 500, maxWait: 1000 },
 )
 </script>
 

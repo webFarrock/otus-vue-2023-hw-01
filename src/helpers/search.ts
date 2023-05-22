@@ -4,4 +4,5 @@ export const searchHighlight = (input: string, hightlight: string) => {
   return input.replace(regEx, replaceMask)
 }
 
-export const queryFound = (input: string, value: string) => input.toLowerCase().includes(value.toLowerCase())
+export const queryFound = (input: string, value: string) =>
+  input.toLowerCase().includes(value.toLowerCase())

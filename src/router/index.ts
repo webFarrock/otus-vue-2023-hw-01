@@ -11,27 +11,27 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: ROUTE_HOME,
-    component: AppHome
+    component: AppHome,
   },
   {
     path: '/basket',
     name: ROUTE_BASKET,
-    component: AppBasket
+    component: AppBasket,
   },
   {
     path: '/product-add',
     name: ROUTE_PRODUCT_ADD,
-    component: ProductAdd
+    component: ProductAdd,
   },
   {
     path: '/checkout',
     name: ROUTE_CHECKOUT,
-    component: AppCheckout
-  }
+    component: AppCheckout,
+  },
 ]
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   linkActiveClass: 'active',
-  routes
+  routes,
 })

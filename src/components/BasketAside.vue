@@ -8,7 +8,7 @@ const totalCount = computed(() => displayBasket.value.length)
 const totalPrice = computed(() =>
   displayBasket.value.reduce((acc, { price }) => {
     return (acc += price)
-  }, 0)
+  }, 0),
 )
 </script>
 

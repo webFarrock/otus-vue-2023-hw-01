@@ -1,5 +1,5 @@
-import axios, {Axios} from 'axios'
-import type {IProduct} from "@/types";
+import axios, { Axios } from 'axios'
+import type { IProduct } from '@/types'
 
 class FakeStoreApi {
   private readonly baseUrl = 'https://fakestoreapi.com'
@@ -12,7 +12,7 @@ class FakeStoreApi {
   }
 
   async fetchProducts() {
-    const {data} = await this.request.get<IProduct[]>('/products')
+    const { data } = await this.request.get<IProduct[]>('/products')
     return data || []
   }
 }
