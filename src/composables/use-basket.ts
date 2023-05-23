@@ -23,6 +23,7 @@ export default () => {
     }
   }
 
+  const clearBasket = () => (basket.value = new Map())
   const getBasketQuantity = (item: IProduct) => {
     const product = basket.value.get(item.id)
     return product?.quantity || 0
@@ -35,5 +36,6 @@ export default () => {
     addToBasket,
     removeFromBasket,
     getBasketQuantity,
+    clearBasket,
   }
 }
