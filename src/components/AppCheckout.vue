@@ -6,7 +6,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, minLength, email } from '@vuelidate/validators'
 
 import useBasket from '@/composables/use-basket'
-import BasketAside from '@/components/BasketAside.vue'
+import BasketList from '@/components/BasketList.vue'
 
 const router = useRouter()
 const { isEmpty, clearBasket } = useBasket()
@@ -68,7 +68,7 @@ onMounted(() => {
   </div>
 
   <div class="row g-5">
-    <BasketAside />
+    <BasketList class="col-md-5 col-lg-4" />
     <div class="col-md-7 col-lg-8">
       <form class="needs-validation" novalidate @submit.prevent="handleSubmit">
         <div class="row g-3">

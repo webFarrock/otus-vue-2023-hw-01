@@ -9,7 +9,7 @@ import {
 } from '@/constants'
 
 const AppHome = () => import(/* webpackChunkName: "" */ '@/components/AppHome.vue')
-//const AppBasket = () => import(/* webpackChunkName: "" */ '@/components/AppBasket.vue')
+const AppBasket = () => import(/* webpackChunkName: "" */ '@/components/AppBasket.vue')
 const ProductAdd = () => import(/* webpackChunkName: "" */ '@/components/ProductAdd.vue')
 const ProductDetail = () => import(/* webpackChunkName: "" */ '@/components/ProductDetail.vue')
 const AppCheckout = () => import(/* webpackChunkName: "" */ '@/components/AppCheckout.vue')
@@ -20,11 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     name: ROUTE_HOME,
     component: AppHome,
   },
-  // {
-  //   path: '/basket',
-  //   name: ROUTE_BASKET,
-  //   component: AppBasket,
-  // },
+  {
+    path: '/basket',
+    name: ROUTE_BASKET,
+    component: AppBasket,
+  },
   {
     path: '/product-add',
     name: ROUTE_PRODUCT_ADD,

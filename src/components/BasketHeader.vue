@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import useBasket from '@/composables/use-basket'
-import { routeCheckout } from '@/constants'
+import { routeBasket } from '@/constants'
 
 const { inBasketCount } = useBasket()
 </script>
 
 <template>
   <div class="header-basket">
-    <router-link :to="routeCheckout" class="p-2 header-basket__link">items in basket:</router-link>
+    <router-link :to="routeBasket" class="p-2 header-basket__link">items in basket:</router-link>
     {{ inBasketCount }}
   </div>
 </template>

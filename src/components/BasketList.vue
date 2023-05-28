@@ -13,7 +13,7 @@ const totalPrice = computed(() =>
 </script>
 
 <template>
-  <div class="col-md-5 col-lg-4 order-md-last">
+  <div class="order-md-last">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
       <span class="text-primary">Your cart</span>
       <span class="badge bg-primary rounded-pill">{{ totalCount }}</span>
