@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useState } from 'vue3-usestate'
 import { fetchProduct } from '@/services/fake-store-api'
 import type { IProduct } from '@/types'

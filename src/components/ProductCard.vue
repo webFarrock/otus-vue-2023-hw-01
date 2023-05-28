@@ -7,7 +7,7 @@ import { productPath } from '@/constants'
 
 interface IProps {
   product: IProduct
-  detail: Boolean
+  detail?: Boolean
 }
 
 const props = defineProps<IProps>()
