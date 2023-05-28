@@ -15,7 +15,13 @@ class FakeStoreApi {
     const { data } = await this.request.get<IProduct[]>('/products')
     return data || []
   }
+
+  async fetchProduct(id: number) {
+    const { data } = await this.request.get<IProduct>(`/products/${id}`)
+    return data || null
+  }
 }
 
 const instance = new FakeStoreApi()
 export const fetchProducts = () => instance.fetchProducts()
+export const fetchProduct = (id: number) => instance.fetchProduct(id)

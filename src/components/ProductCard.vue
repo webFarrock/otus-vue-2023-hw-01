@@ -3,9 +3,11 @@ import { computed } from 'vue'
 import useBasket from '@/composables/use-basket'
 import RatingStars from '@/components/RatingStars.vue'
 import type { IProduct } from '@/types'
+import { productPath } from '@/constants'
 
 interface IProps {
   product: IProduct
+  detail: Boolean
 }
 
 const props = defineProps<IProps>()
@@ -30,7 +32,11 @@ const handleRemoveFromBasketFull = () => removeFromBasket(props.product, true)
       </div>
       <div class="card__body">
         <div class="card__text">
-          <div class="card-text__title" v-html="product.title" />
+          <router-link v-if="!detail" :to="productPath(product.id)">
+            <div class="card-text__title" v-html="product.title" />
+          </router-link>
+          <div v-else class="card-text__title" v-html="product.title" />
+
           <div class="card-text__category">{{ product.category }}</div>
         </div>
         <RatingStars :rating="product.rating.rate"></RatingStars>
