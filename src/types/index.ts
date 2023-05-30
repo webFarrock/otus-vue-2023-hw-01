@@ -22,3 +22,7 @@ export interface ISearchData {
 export interface IBasketProduct extends IProduct {
   quantity: number
 }
+
+export interface IUser {
+  login: string
+}

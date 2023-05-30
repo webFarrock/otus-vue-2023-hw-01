@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { routeCheckout, routeHome } from '@/constants'
 import useBasket from '@/composables/use-basket'
@@ -8,9 +8,7 @@ import BasketList from '@/components/BasketList.vue'
 const router = useRouter()
 const { isEmpty } = useBasket()
 
-onMounted(() => {
-  if (isEmpty.value) router.push(routeHome)
-})
+watch(isEmpty, (v) => v && router.push(routeHome), { immediate: true })
 </script>
 
 <template>

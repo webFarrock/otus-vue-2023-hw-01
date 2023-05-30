@@ -3,7 +3,12 @@ import { computed } from 'vue'
 import useBasket from '@/composables/use-basket'
 
 const { basket } = useBasket()
-const displayBasket = computed(() => [...basket.value.values()])
+const displayBasket = computed(() =>
+  [...basket.value.values()].map((item) => ({
+    ...item,
+    totalPrice: item.price * item.quantity,
+  })),
+)
 const totalCount = computed(() => displayBasket.value.length)
 const totalPrice = computed(() =>
   displayBasket.value.reduce((acc, { price }) => {
@@ -25,10 +30,10 @@ const totalPrice = computed(() =>
         class="list-group-item d-flex justify-content-between lh-sm"
       >
         <div>
-          <h6 class="my-0">{{ item.title }}</h6>
+          <h6 class="my-0">{{ item.title }} (positions: {{ item.quantity }})</h6>
           <small class="text-body-secondary">{{ item.category }}</small>
         </div>
-        <span class="text-body-secondary">${{ item.price }}</span>
+        <span class="text-body-secondary">${{ item.totalPrice }}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between">
         <span>Total (USD)</span>

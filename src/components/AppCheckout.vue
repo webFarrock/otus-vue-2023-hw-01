@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { routeHome } from '@/constants'
 import { useVuelidate } from '@vuelidate/core'
@@ -57,9 +57,7 @@ const handleSubmit = async () => {
   router.push(routeHome)
 }
 
-onMounted(() => {
-  if (isEmpty.value) router.push(routeHome)
-})
+watch(isEmpty, (v) => v && router.push(routeHome), { immediate: true })
 </script>
 
 <template>
