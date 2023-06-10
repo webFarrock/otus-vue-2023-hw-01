@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import useBasket from '@/composables/use-basket'
+import { storeToRefs } from 'pinia'
+import { useBasket } from '@/store/basket'
 import { routeBasket } from '@/constants'
 
-const { inBasketCount } = useBasket()
+const { inBasketCount } = storeToRefs(useBasket())
 </script>
 
 <template>

@@ -24,5 +24,11 @@ export interface IBasketProduct extends IProduct {
 }
 
 export interface IUser {
-  login: string
+  login?: string
+  firstName?: string
+  lastName?: string
+  email?: string
+  address?: string
 }
+
+export type Nullable<T> = T | null

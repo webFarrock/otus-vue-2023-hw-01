@@ -72,11 +72,11 @@ const handleSubmit = async () => {
       <div class="col-12">
         <label class="form-label" for="product-name">Product name</label>
         <input
-          id="product-name"
-          v-model="formData.name"
-          :class="nameClassName"
-          class="form-control"
-          type="text"
+            id="product-name"
+            v-model="formData.name"
+            :class="nameClassName"
+            class="form-control"
+            type="text"
         />
         <div class="invalid-feedback">
           <div v-for="error of v$.name.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -87,11 +87,11 @@ const handleSubmit = async () => {
       <div class="col-12">
         <label class="form-label" for="category-name">Category name</label>
         <input
-          id="category-name"
-          v-model="formData.category"
-          :class="categoryClassName"
-          class="form-control"
-          type="text"
+            id="category-name"
+            v-model="formData.category"
+            :class="categoryClassName"
+            class="form-control"
+            type="text"
         />
         <div class="invalid-feedback">
           <div v-for="error of v$.category.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -105,11 +105,11 @@ const handleSubmit = async () => {
         <div class="input-group has-validation">
           <span class="input-group-text">$</span>
           <input
-            id="price"
-            v-model="formData.price"
-            :class="priceClassName"
-            class="form-control"
-            type="number"
+              id="price"
+              v-model="formData.price"
+              :class="priceClassName"
+              class="form-control"
+              type="number"
           />
           <div class="invalid-feedback">
             <div v-for="error of v$.price.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -122,11 +122,11 @@ const handleSubmit = async () => {
       <div class="col-12">
         <label class="form-label" for="description">Description</label>
         <input
-          id="description"
-          v-model="formData.description"
-          :class="descriptionClassName"
-          class="form-control"
-          type="text"
+            id="description"
+            v-model="formData.description"
+            :class="descriptionClassName"
+            class="form-control"
+            type="text"
         />
         <div class="invalid-feedback">
           <div v-for="error of v$.description.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -138,11 +138,11 @@ const handleSubmit = async () => {
       <div class="col-12">
         <label class="form-label" for="product-image">Image link</label>
         <input
-          id="product-image"
-          v-model="formData.image"
-          :class="imageClassName"
-          class="form-control"
-          type="text"
+            id="product-image"
+            v-model="formData.image"
+            :class="imageClassName"
+            class="form-control"
+            type="text"
         />
         <div class="invalid-feedback">
           <div v-for="error of v$.image.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -150,7 +150,7 @@ const handleSubmit = async () => {
       </div>
     </div>
 
-    <hr class="my-4" />
+    <hr class="my-4"/>
 
     <button :class="btnClassNamae" class="w-100 btn btn-primary btn-lg" type="submit">
       Submit

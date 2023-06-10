@@ -1,21 +1,27 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import { routeHome } from '@/constants'
 import { useVuelidate } from '@vuelidate/core'
 import { required, minLength, email } from '@vuelidate/validators'
-
-import useBasket from '@/composables/use-basket'
+import { useBasket } from '@/store/basket'
+import { useUser } from '@/store/user'
 import BasketList from '@/components/BasketList.vue'
 
 const router = useRouter()
-const { isEmpty, clearBasket } = useBasket()
+const basketStore = useBasket()
+const userStore = useUser()
+const { isEmpty } = storeToRefs(basketStore)
+const { clearBasket } = basketStore
+const { user, isLoggedIn } = storeToRefs(userStore)
+const { setUserData } = userStore
 
 const getClearFormData = () => ({
-  firstName: '',
-  lastName: '',
-  email: '',
-  address: null,
+  firstName: user.value?.firstName,
+  lastName: user.value?.lastName,
+  email: user.value?.email,
+  address: user.value?.address,
 })
 const formData = ref(getClearFormData())
 const rules = {
@@ -50,6 +56,7 @@ const handleSubmit = async () => {
   }
 
   alert(`${formData.value.firstName}, Your order was submitted`)
+  isLoggedIn.value && setUserData(formData.value)
   console.log('form ok, data: ', formData.value)
   clearForm()
   clearBasket()
@@ -66,18 +73,18 @@ watch(isEmpty, (v) => v && router.push(routeHome), { immediate: true })
   </div>
 
   <div class="row g-5">
-    <BasketList class="col-md-5 col-lg-4" />
+    <BasketList class="col-md-5 col-lg-4"/>
     <div class="col-md-7 col-lg-8">
       <form class="needs-validation" novalidate @submit.prevent="handleSubmit">
         <div class="row g-3">
           <div class="col-sm-6">
             <label class="form-label" for="firstName">First name</label>
             <input
-              id="firstName"
-              v-model="formData.firstName"
-              :class="firstNameClassName"
-              class="form-control"
-              type="text"
+                id="firstName"
+                v-model="formData.firstName"
+                :class="firstNameClassName"
+                class="form-control"
+                type="text"
             />
             <div class="invalid-feedback">
               <div v-for="error of v$.firstName.$errors" :key="error.$uid">
@@ -88,17 +95,17 @@ watch(isEmpty, (v) => v && router.push(routeHome), { immediate: true })
 
           <div class="col-sm-6">
             <label class="form-label" for="lastName">Last name</label>
-            <input id="lastName" v-model="formData.lastName" class="form-control" type="text" />
+            <input id="lastName" v-model="formData.lastName" class="form-control" type="text"/>
           </div>
 
           <div class="col-12">
             <label class="form-label" for="email">Email</label>
             <input
-              id="email"
-              v-model="formData.email"
-              :class="emailClassName"
-              class="form-control"
-              type="email"
+                id="email"
+                v-model="formData.email"
+                :class="emailClassName"
+                class="form-control"
+                type="email"
             />
             <div class="invalid-feedback">
               <div v-for="error of v$.email.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -108,11 +115,11 @@ watch(isEmpty, (v) => v && router.push(routeHome), { immediate: true })
           <div class="col-12">
             <label class="form-label" for="address">Address</label>
             <input
-              id="address"
-              v-model="formData.address"
-              :class="addressClassName"
-              class="form-control"
-              type="text"
+                id="address"
+                v-model="formData.address"
+                :class="addressClassName"
+                class="form-control"
+                type="text"
             />
             <div class="invalid-feedback">
               <div v-for="error of v$.address.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -120,7 +127,7 @@ watch(isEmpty, (v) => v && router.push(routeHome), { immediate: true })
           </div>
         </div>
 
-        <hr class="my-4" />
+        <hr class="my-4"/>
 
         <button :class="btnClassNamae" class="w-100 btn btn-primary btn-lg" type="submit">
           Continue to checkout

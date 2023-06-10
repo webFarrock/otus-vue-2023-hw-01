@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import type { IProduct } from '@/types'
-import useProductsDetail from '@/composables/use-products-detail'
+import { useProductsDetail } from '@/store/products-detail'
 import { routeHome } from '@/constants'
 import AppLoader from '@/components/AppLoader.vue'
 import ProductCard from '@/components/ProductCard.vue'
@@ -13,7 +14,9 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
-const { loading, getProduct } = useProductsDetail()
+const productsDetailStore = useProductsDetail()
+const { getProduct } = productsDetailStore
+const { loading } = storeToRefs(productsDetailStore)
 const product = ref<IProduct | null>(null)
 
 onMounted(async () => {
@@ -21,10 +24,10 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <AppLoader v-if="loading" />
+  <AppLoader v-if="loading"/>
   <div v-else class="album">
     <router-link :to="routeHome" class="mb-3 d-block">To main page</router-link>
-    <ProductCard v-if="product" :detail="true" :product="product" />
+    <ProductCard v-if="product" :detail="true" :product="product"/>
     <ErrorMessage v-else> Cant find product with id = {{ id }}</ErrorMessage>
   </div>
 </template>

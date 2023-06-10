@@ -1,11 +1,11 @@
-import { ref, onMounted } from 'vue'
-import { useState } from 'vue3-usestate'
+import { defineStore } from 'pinia'
+import { onMounted, ref } from 'vue'
 import { fetchProducts } from '@/services/fake-store-api'
 import type { IProduct } from '@/types'
 
-export default () => {
-  const products = useState<Map<number, IProduct>>('products', new Map())
-  const loading = ref(false)
+export const useProducts = defineStore('products', () => {
+  const products = ref<Map<number, IProduct>>(new Map())
+  const loading = ref<boolean>(false)
 
   const initProducts = async () => {
     if (products.value.size) return
@@ -26,4 +26,4 @@ export default () => {
     products,
     loading,
   }
-}
+})

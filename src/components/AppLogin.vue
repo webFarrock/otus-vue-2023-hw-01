@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
-import useUser from '@/composables/use-user'
+import { useUser } from '@/store/user'
 import { routeHome, TEST_PASSWORD, TEST_USER } from '@/constants'
 
 const { login } = useUser()
@@ -52,9 +52,9 @@ const handleSubmit = async () => {
   </div>
   <div class="row">
     <div class="col-12 pb-4">
-      Test user account <br />
-      login: {{ TEST_USER }} <br />
-      password: {{ TEST_PASSWORD }} <br />
+      Test user account <br/>
+      login: {{ TEST_USER }} <br/>
+      password: {{ TEST_PASSWORD }} <br/>
     </div>
   </div>
   <form class="needs-validation" novalidate @submit.prevent="handleSubmit">
@@ -62,11 +62,11 @@ const handleSubmit = async () => {
       <div class="col-12">
         <label class="form-label" for="login">Login</label>
         <input
-          id="login"
-          v-model="formData.login"
-          :class="loginClassName"
-          class="form-control"
-          type="email"
+            id="login"
+            v-model="formData.login"
+            :class="loginClassName"
+            class="form-control"
+            type="email"
         />
         <div class="invalid-feedback">
           <div v-for="error of v$.login.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -75,11 +75,11 @@ const handleSubmit = async () => {
       <div class="col-12">
         <label class="form-label" for="password">Password</label>
         <input
-          id="password"
-          v-model="formData.password"
-          :class="passwordClassName"
-          class="form-control"
-          type="text"
+            id="password"
+            v-model="formData.password"
+            :class="passwordClassName"
+            class="form-control"
+            type="text"
         />
         <div class="invalid-feedback">
           <div v-for="error of v$.password.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -87,7 +87,7 @@ const handleSubmit = async () => {
       </div>
     </div>
 
-    <hr class="my-4" />
+    <hr class="my-4"/>
 
     <button :class="btnClassNamae" class="w-100 btn btn-primary btn-lg" type="submit">Login</button>
   </form>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import useBasket from '@/composables/use-basket'
+import { useBasket } from '@/store/basket'
 import RatingStars from '@/components/RatingStars.vue'
 import type { IProduct } from '@/types'
 import { productPath } from '@/constants'
@@ -24,18 +24,18 @@ const handleRemoveFromBasketFull = () => removeFromBasket(props.product, true)
     <div class="card shadow-sm">
       <div class="card__image">
         <img
-          :alt="product.title"
-          :src="product.image"
-          :title="product.title"
-          class="card-img-top"
+            :alt="product.title"
+            :src="product.image"
+            :title="product.title"
+            class="card-img-top"
         />
       </div>
       <div class="card__body">
         <div class="card__text">
           <router-link v-if="!detail" :to="productPath(product.id)">
-            <div class="card-text__title" v-html="product.title" />
+            <div class="card-text__title" v-html="product.title"/>
           </router-link>
-          <div v-else class="card-text__title" v-html="product.title" />
+          <div v-else class="card-text__title" v-html="product.title"/>
 
           <div class="card-text__category">{{ product.category }}</div>
         </div>
@@ -46,26 +46,26 @@ const handleRemoveFromBasketFull = () => removeFromBasket(props.product, true)
             <div class="d-flex justify-content-between">
               <div class="d-flex w-25 gap-2">
                 <button
-                  class="btn btn-outline-primary"
-                  type="button"
-                  @click="handleRemoveFromBasket"
+                    class="btn btn-outline-primary"
+                    type="button"
+                    @click="handleRemoveFromBasket"
                 >
                   -
                 </button>
                 <input
-                  :value="basketQuantity"
-                  class="card__basket-counter"
-                  disabled
-                  type="number"
+                    :value="basketQuantity"
+                    class="card__basket-counter"
+                    disabled
+                    type="number"
                 />
                 <button class="btn btn-outline-primary" type="button" @click="handleAddToBasket">
                   +
                 </button>
               </div>
               <button
-                class="btn btn-outline-primary"
-                type="button"
-                @click="handleRemoveFromBasketFull"
+                  class="btn btn-outline-primary"
+                  type="button"
+                  @click="handleRemoveFromBasketFull"
               >
                 Remove
               </button>

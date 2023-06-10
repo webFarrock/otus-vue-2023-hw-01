@@ -1,9 +1,9 @@
-import { computed } from 'vue'
-import { useState } from 'vue3-usestate'
+import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
 import type { IBasketProduct, IProduct } from '@/types'
 
-export default () => {
-  const basket = useState<Map<number, IBasketProduct>>('basket', new Map())
+export const useBasket = defineStore('basket', () => {
+  const basket = ref<Map<number, IBasketProduct>>(new Map())
   const addToBasket = (item: IProduct) => {
     const product = basket.value.get(item.id)
     if (product) basket.value.set(item.id, { ...item, quantity: (product.quantity += 1) })
@@ -38,4 +38,4 @@ export default () => {
     getBasketQuantity,
     clearBasket,
   }
-}
+})

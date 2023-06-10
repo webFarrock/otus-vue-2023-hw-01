@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useUser } from '@/store/user'
 import type { RouteRecordRaw } from 'vue-router'
-import useUser from '@/composables/use-user'
 
 import {
   ROUTE_BASKET,
@@ -35,7 +36,7 @@ const routes: Array<RouteRecordRaw> = [
     name: ROUTE_PRODUCT_ADD,
     component: ProductAdd,
     beforeEnter: () => {
-      const { isLoggedIn } = useUser()
+      const { isLoggedIn } = storeToRefs(useUser())
       if (isLoggedIn.value) return true
       return routeHome
     },

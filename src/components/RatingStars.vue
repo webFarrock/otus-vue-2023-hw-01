@@ -8,11 +8,11 @@ interface IProps {
 const props = defineProps<IProps>()
 const ratingRound = computed(() => Math.round(props.rating))
 const stars = computed(() =>
-  new Array(5).fill({}).map((item, idx) => ({
-    fa: true,
-    'fa-star': true,
-    'rating-color': ratingRound.value >= idx + 1,
-  })),
+    new Array(5).fill({}).map((item, idx) => ({
+      fa: true,
+      'fa-star': true,
+      'rating-color': ratingRound.value >= idx + 1,
+    })),
 )
 </script>
 
@@ -20,7 +20,7 @@ const stars = computed(() =>
   <div class="d-flex justify-content-between align-items-center">
     <div class="review-stat">Rating {{ rating }}</div>
     <div class="small-ratings">
-      <i v-for="star in stars" :class="star" :key="star" />
+      <i v-for="star in stars" :class="star" :key="star"/>
     </div>
   </div>
 </template>

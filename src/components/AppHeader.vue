@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 import { routeHome, routeLogin, routeProductAdd } from '@/constants'
-import useUser from '@/composables/use-user'
-import useBasket from '@/composables/use-basket'
+import { useUser } from '@/store/user'
+import { useBasket } from '@/store/basket'
 import BasketHeader from '@/components/BasketHeader.vue'
 
-const { isLoggedIn, logout } = useUser()
-const { isEmpty } = useBasket()
+const userStore = useUser()
+const { isLoggedIn, userHeaderTitle } = storeToRefs(userStore)
+const { logout } = userStore
+const { isEmpty } = storeToRefs(useBasket())
 const showBasket = computed(() => !isEmpty.value)
 </script>
 <template>
@@ -20,13 +23,14 @@ const showBasket = computed(() => !isEmpty.value)
             </router-link>
           </div>
           <div>
+            <span class="navbar-brand" v-if="isLoggedIn">Hello, {{ userHeaderTitle }}</span>
             <a v-if="isLoggedIn" class="navbar-brand" href="#" @click.prevent="logout">Logout</a>
             <router-link v-else :to="routeLogin" class="navbar-brand">Login</router-link>
           </div>
           <div v-if="isLoggedIn">
             <router-link :to="routeProductAdd" class="navbar-brand"> Add new product</router-link>
           </div>
-          <BasketHeader v-if="showBasket" />
+          <BasketHeader v-if="showBasket"/>
         </div>
       </div>
     </div>
