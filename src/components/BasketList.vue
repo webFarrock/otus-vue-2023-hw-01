@@ -11,9 +11,9 @@ const displayBasket = computed(() =>
 )
 const totalCount = computed(() => displayBasket.value.length)
 const totalPrice = computed(() =>
-  displayBasket.value.reduce((acc, { price }) => {
-    return (acc += price)
-  }, 0),
+  displayBasket.value.reduce((acc, { price, quantity }) => {
+    return (acc += price * quantity)
+  }, 0).toFixed(2).replace(".00", ""),
 )
 </script>
 
