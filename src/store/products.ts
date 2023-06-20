@@ -25,5 +25,6 @@ export const useProducts = defineStore('products', () => {
   return {
     products,
     loading,
+    initProducts,
   }
 })
