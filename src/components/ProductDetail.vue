@@ -15,13 +15,9 @@ interface IProps {
 const props = defineProps<IProps>()
 
 const productsDetailStore = useProductsDetail()
-const { getProduct } = productsDetailStore
+const { getProduct, product } = productsDetailStore
 const { loading } = storeToRefs(productsDetailStore)
-const product = ref<IProduct | null>(null)
-
-onMounted(async () => {
-  product.value = await getProduct(props.id)
-})
+onMounted(() => getProduct(props.id))
 </script>
 <template>
   <AppLoader v-if="loading"/>
