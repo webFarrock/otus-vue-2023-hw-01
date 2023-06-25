@@ -28,7 +28,7 @@ describe('ProductList', () => {
         }) ]
       }
     })
-    expect((wrapper as VueWrapper).findAll('[data-test-id="product-card"]').length).toEqual(products.length)
+    expect((wrapper as VueWrapper).findAll('[data-testid="product-card"]').length).toEqual(products.length)
   })
 
   it('product list loading', () => {

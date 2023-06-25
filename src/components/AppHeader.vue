@@ -23,7 +23,12 @@ const showBasket = computed(() => !isEmpty.value)
             </router-link>
           </div>
           <div>
-            <span class="navbar-brand" v-if="isLoggedIn">Hello, {{ userHeaderTitle }}</span>
+            <span v-if="isLoggedIn"
+                  class="navbar-brand"
+                  data-testid="user-greeting"
+            >
+              Hello, {{ userHeaderTitle }}
+            </span>
             <a v-if="isLoggedIn" class="navbar-brand" href="#" @click.prevent="logout">Logout</a>
             <router-link v-else :to="routeLogin" class="navbar-brand">Login</router-link>
           </div>

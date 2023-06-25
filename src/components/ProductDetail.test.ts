@@ -33,7 +33,7 @@ describe('ProductDetails', () => {
         }) ]
       }
     })
-    expect((wrapper as VueWrapper).find('[data-test-id="product-title"]').text()).toEqual(product.title)
+    expect((wrapper as VueWrapper).find('[data-testid="product-title"]').text()).toEqual(product.title)
   })
 
 
@@ -54,7 +54,7 @@ describe('ProductDetails', () => {
         }) ]
       }
     })
-    expect((wrapper as VueWrapper).find('[data-test-id="error-message"]').text()).toContain('Cant find product')
+    expect((wrapper as VueWrapper).find('[data-testid="error-message"]').text()).toContain('Cant find product')
   })
 
   it('loading in progress', () => {

@@ -20,7 +20,7 @@ const handleRemoveFromBasketFull = () => removeFromBasket(props.product, true)
 </script>
 
 <template>
-  <div class="col" data-test-id="product-card">
+  <div class="col" data-testid="product-card">
     <div class="card shadow-sm">
       <div class="card__image">
         <img
@@ -33,9 +33,9 @@ const handleRemoveFromBasketFull = () => removeFromBasket(props.product, true)
       <div class="card__body">
         <div class="card__text">
           <router-link v-if="!detail" :to="productPath(product.id)">
-            <div class="card-text__title" data-test-id="product-title" v-html="product.title"/>
+            <div class="card-text__title" data-testid="product-title" v-html="product.title"/>
           </router-link>
-          <div v-else class="card-text__title" data-test-id="product-title" v-html="product.title"/>
+          <div v-else class="card-text__title" data-testid="product-title" v-html="product.title"/>
 
           <div class="card-text__category">{{ product.category }}</div>
         </div>
