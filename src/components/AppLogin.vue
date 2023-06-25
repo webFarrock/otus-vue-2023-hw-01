@@ -67,6 +67,7 @@ const handleSubmit = async () => {
             :class="loginClassName"
             class="form-control"
             type="email"
+            data-test-id="auth-form-input-login"
         />
         <div class="invalid-feedback">
           <div v-for="error of v$.login.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -80,6 +81,7 @@ const handleSubmit = async () => {
             :class="passwordClassName"
             class="form-control"
             type="text"
+            data-test-id="auth-form-input-password"
         />
         <div class="invalid-feedback">
           <div v-for="error of v$.password.$errors" :key="error.$uid">{{ error.$message }}</div>
@@ -89,7 +91,11 @@ const handleSubmit = async () => {
 
     <hr class="my-4"/>
 
-    <button :class="btnClassNamae" class="w-100 btn btn-primary btn-lg" type="submit">Login</button>
+    <button :class="btnClassNamae"
+            data-test-id="auth-form-btn-login"
+            class="w-100 btn btn-primary btn-lg"
+            type="submit">Login
+    </button>
   </form>
 </template>
 

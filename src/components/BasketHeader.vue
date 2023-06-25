@@ -9,7 +9,7 @@ const { inBasketCount } = storeToRefs(useBasket())
 <template>
   <div class="header-basket">
     <router-link :to="routeBasket" class="p-2 header-basket__link">items in basket:</router-link>
-    {{ inBasketCount }}
+    <span data-test-id="header-basket-counter">{{ inBasketCount }}</span>
   </div>
 </template>
 

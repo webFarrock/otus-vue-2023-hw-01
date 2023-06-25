@@ -25,13 +25,13 @@ watchDebounced(
 <template>
   <div class="input-group mb-3">
     <span id="basic-addon1" class="input-group-text">Product name</span>
-    <input v-model="name" class="form-control" type="text"/>
+    <input v-model="name" data-test-id="search-input-name" class="form-control" type="text"/>
   </div>
 
   <div class="input-group mb-3">
     <span class="input-group-text">Price from </span>
-    <input v-model.number="priceFrom" class="form-control" type="number"/>
+    <input v-model.number="priceFrom" data-test-id="search-input-price-from" class="form-control" type="number"/>
     <span class="input-group-text">Price to </span>
-    <input v-model.number="priceTo" class="form-control" type="number"/>
+    <input v-model.number="priceTo" data-test-id="search-input-price-to" class="form-control" type="number"/>
   </div>
 </template>
