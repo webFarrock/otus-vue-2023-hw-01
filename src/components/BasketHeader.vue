@@ -7,7 +7,7 @@ const { inBasketCount } = storeToRefs(useBasket())
 </script>
 
 <template>
-  <div class="header-basket">
+  <div class="header-basket" v-if="inBasketCount">
     <router-link :to="routeBasket" class="p-2 header-basket__link">items in basket:</router-link>
     <span data-testid="header-basket-counter">{{ inBasketCount }}</span>
   </div>
