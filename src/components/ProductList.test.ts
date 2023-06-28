@@ -7,6 +7,7 @@ import { describe, vi, it, expect, afterEach } from 'vitest'
 import ProductList from '@/components/ProductList.vue'
 import products from '@/__mocks__/products.json'
 import { createTestingPinia } from '@pinia/testing'
+import { DEFAULT_APP_LOADING_MESSAGE } from '@/constants/hint'
 
 let wrapper: VueWrapper | null = null
 describe('ProductList', () => {
@@ -44,6 +45,6 @@ describe('ProductList', () => {
         }) ]
       }
     })
-    expect((wrapper as VueWrapper).text()).toContain('Loading...')
+    expect((wrapper as VueWrapper).text()).toContain(DEFAULT_APP_LOADING_MESSAGE)
   })
 })
