@@ -2,8 +2,8 @@
  * @vitest-environment jsdom
  */
 
-import { mount, shallowMount, VueWrapper } from '@vue/test-utils'
-import { beforeEach, describe, vi, it, expect, afterEach } from 'vitest'
+import { mount, VueWrapper } from '@vue/test-utils'
+import { describe, vi, it, expect, afterEach } from 'vitest'
 import ProductList from '@/components/ProductList.vue'
 import products from '@/__mocks__/products.json'
 import { createTestingPinia } from '@pinia/testing'
