@@ -5,22 +5,32 @@ interface IProps {
   rating: number
 }
 
+const minRating = 0
+const maxRating = 5
 const props = defineProps<IProps>()
-const ratingRound = computed(() => Math.round(props.rating))
+const ratingRound = computed(() => {
+  const rating = Math.round(props.rating)
+  if (rating < minRating) return minRating
+  if (rating > maxRating) return maxRating
+  return rating
+})
 const stars = computed(() =>
     new Array(5).fill({}).map((item, idx) => ({
-      fa: true,
-      'fa-star': true,
-      'rating-color': ratingRound.value >= idx + 1,
+      status: ratingRound.value >= idx + 1 ? 'filled' : 'empty',
+      className: {
+        fa: true,
+        'fa-star': true,
+        'rating-color': ratingRound.value >= idx + 1,
+      }
     })),
 )
 </script>
 
 <template>
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="review-stat">Rating {{ rating }}</div>
+  <div v-if="ratingRound" data-testid="rating" class="d-flex justify-content-between align-items-center">
+    <div class="review-stat" data-testid="rating-title">Rating {{ rating }}</div>
     <div class="small-ratings">
-      <i v-for="star in stars" :class="star" :key="star"/>
+      <i v-for="star in stars" :data-testid="`rating-star-${star.status}`" :class="star.className" :key="star"/>
     </div>
   </div>
 </template>
