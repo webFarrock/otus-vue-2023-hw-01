@@ -46,6 +46,7 @@ const handleRemoveFromBasketFull = () => removeFromBasket(props.product, true)
             <div class="d-flex justify-content-between">
               <div class="d-flex w-25 gap-2">
                 <button
+                    data-testid="basket-btn-dec"
                     class="btn btn-outline-primary"
                     type="button"
                     @click="handleRemoveFromBasket"
@@ -58,11 +59,13 @@ const handleRemoveFromBasketFull = () => removeFromBasket(props.product, true)
                     disabled
                     type="number"
                 />
-                <button class="btn btn-outline-primary" type="button" @click="handleAddToBasket">
+                <button data-testid="basket-btn-inc" class="btn btn-outline-primary" type="button"
+                        @click="handleAddToBasket">
                   +
                 </button>
               </div>
               <button
+                  data-testid="basket-btn-remove"
                   class="btn btn-outline-primary"
                   type="button"
                   @click="handleRemoveFromBasketFull"
@@ -72,7 +75,9 @@ const handleRemoveFromBasketFull = () => removeFromBasket(props.product, true)
             </div>
           </template>
           <template v-else>
-            <button class="btn btn-outline-primary" type="button" @click="handleAddToBasket">
+            <button class="btn btn-outline-primary"
+                    data-testid="basket-btn-add" type="button"
+                    @click="handleAddToBasket">
               Add to basket
             </button>
           </template>

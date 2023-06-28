@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test'
 
+const appHomePage = 'http://127.0.0.1:5173/'
+
 test('search products by name', async ({ page }) => {
-  await page.goto('http://127.0.0.1:5173/')
+  await page.goto(appHomePage)
   await page.getByTestId('search-input-name').click()
   await page.getByTestId('search-input-name').fill('cotton')
   const items = await page.getByTestId('product-card')
@@ -10,7 +12,7 @@ test('search products by name', async ({ page }) => {
 
 
 test('search products by price', async ({ page }) => {
-  await page.goto('http://127.0.0.1:5173/')
+  await page.goto(appHomePage)
   await page.getByTestId('search-input-price-from').click()
   await page.getByTestId('search-input-price-from').fill('50')
   await page.getByTestId('search-input-price-to').click()
@@ -20,7 +22,7 @@ test('search products by price', async ({ page }) => {
 })
 
 test('user login', async ({ page }) => {
-  await page.goto('http://127.0.0.1:5173/')
+  await page.goto(appHomePage)
   await page.getByRole('link', { name: 'Login' }).click()
   await page.getByTestId('auth-form-input-login').click()
   await page.getByTestId('auth-form-input-login').fill('user')
@@ -37,21 +39,29 @@ test('user login', async ({ page }) => {
 
 
 test('add to basket', async ({ page }) => {
-  await page.goto('http://127.0.0.1:5173/')
-  await page.locator('.btn').first().click()
-  await page.locator('.mt-2 > .btn').first().click()
-  await page.locator('.mt-2 > .btn').first().click()
+  const addProductCount = 3
+  await page.goto(appHomePage)
+
+  for (let i = 0; i < addProductCount; i++) {
+    await page.getByTestId('basket-btn-add').nth(i).click()
+  }
+
   const basketCounter = await page.getByTestId('header-basket-counter')
-  await expect(basketCounter).toContainText('3')
+  await expect(basketCounter).toContainText(String(addProductCount))
 })
 
 test('remove from basket', async ({ page }) => {
-  await page.goto('http://127.0.0.1:5173/')
-  await page.locator('.btn').first().click()
-  await page.locator('.mt-2 > .btn').first().click()
-  await page.locator('.mt-2 > .btn').first().click()
-  await page.getByRole('button', { name: 'Remove' }).nth(2).click()
-  await page.getByRole('button', { name: 'Remove' }).nth(1).click()
+  await page.goto(appHomePage)
+
+  const basketBtnAdd = await page.getByTestId('basket-btn-add')
+  await basketBtnAdd.nth(3).click()
+  await basketBtnAdd.nth(1).click()
+  await basketBtnAdd.nth(2).click()
+
+  const basketBtnRemove = await page.getByTestId('basket-btn-remove')
+  await basketBtnRemove.nth(0).click()
+  await basketBtnRemove.nth(1).click()
+
   const basketCounter = await page.getByTestId('header-basket-counter')
   await expect(basketCounter).toContainText('1')
 })
