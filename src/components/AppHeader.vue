@@ -30,12 +30,13 @@ const showBasket = computed(() => !isEmpty.value)
               Hello, {{ userHeaderTitle }}
             </span>
             <a v-if="isLoggedIn" class="navbar-brand" href="#" @click.prevent="logout">Logout</a>
-            <router-link v-else :to="routeLogin" class="navbar-brand">Login</router-link>
+            <router-link v-else :to="routeLogin" data-testid="login-link" class="navbar-brand">Login</router-link>
           </div>
           <div v-if="isLoggedIn">
-            <router-link :to="routeProductAdd" class="navbar-brand"> Add new product</router-link>
+            <router-link :to="routeProductAdd" data-testid="add-product-link" class="navbar-brand"> Add new product
+            </router-link>
           </div>
-          <BasketHeader v-if="showBasket"/>
+          <BasketHeader data-testid="basket-header" v-if="showBasket"/>
         </div>
       </div>
     </div>
